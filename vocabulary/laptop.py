@@ -1,12 +1,14 @@
 import pymorphy2
+from vocabulary.general import LoadData
 
 LAPTOP = {"ноутбук", "ноут", "ультрабук", "компьютер",
-           "комп", "ЭВМ", "отчёт", "лэптоп", "нетбук", "нотбук", "компуктер", "компудахтер", "миникомпьютер",
-           "макинтош", "персоналка", "пк", "компис", "товар", "инвентарь", "продукт", "продукция", "ассортимент"}
+          "комп", "ЭВМ", "отчёт", "лэптоп", "нетбук", "нотбук", "компуктер", "компудахтер", "миникомпьютер",
+          "макинтош", "персоналка", "пк", "компис", "товар", "инвентарь", "продукт", "продукция", "ассортимент"}
 
 ALL = {"все", "весь", "ассортимент", "список", "несколько", "много", "каталог"}
 
 ONE = {"один", "конкретный", "только", "единственный"}
+
 
 def isLaptopKeyword(text):
     flag = False
@@ -19,6 +21,7 @@ def isLaptopKeyword(text):
         if wn in LAPTOP:
             flag = True
     return flag
+
 
 def isAllKeyword(text):
     flag = False
@@ -44,3 +47,10 @@ def isOneKeyword(text):
         if wn in ONE:
             flag = True
     return flag
+
+
+def findByName(name):
+    laptop_list = LoadData()
+    for x in laptop_list:
+        if x[0] == name:
+            return x

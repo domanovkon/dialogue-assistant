@@ -15,6 +15,7 @@ def start():
             "general": [MessageHandler(Filters.all, Handler.general)],
             "all": [MessageHandler(Filters.all, Handler.all)],
             "laptop": [MessageHandler(Filters.all, Laptop.find)],
+            "laptopName": [MessageHandler(Filters.all, Laptop.findByName)]
             # "search":  [MessageHandler(Filters.all, Handler.search)],
             # "choose": [MessageHandler(Filters.all, Article.choose)],
             # "article": [MessageHandler(Filters.all, Article.defined)],
