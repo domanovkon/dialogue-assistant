@@ -74,7 +74,6 @@ def isMemeKeyword(text):
             flag = True
     return flag
 
-
 def ReplaceSyn(text):
     text = text.replace("?", "")
     text = text.replace(".", "")

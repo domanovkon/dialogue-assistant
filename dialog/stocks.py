@@ -28,6 +28,7 @@ class Stock:
             if len(personals) == 0:
                 self.message.reply_text("У вас нет персональных предложений  😞")
             else:
+                self.message.reply_text("Предложения для " + self.effective_chat.username)
                 for x in personals:
                     if x[0] == self.effective_chat.username:
                         personals_list_counter = personals_list_counter + 1

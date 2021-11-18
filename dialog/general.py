@@ -33,7 +33,7 @@ class Handler:
             return "stock"
         elif isMemeKeyword(msg):
             self.message.reply_text("Хочите прикол? 😏")
-            return "all"
+            return "memes"
         elif isStopKeyword(msg):
             self.message.reply_text(choice(BYE_PHRASE))
             return ConversationHandler.END
