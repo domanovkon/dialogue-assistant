@@ -1,10 +1,7 @@
 from telegram.ext import Updater, CommandHandler,RegexHandler, Filters, MessageHandler, ConversationHandler
 from dialog.laptops import Laptop
-# from dialog.articles import Article
-# from data.data import GenerateData
 from token_api import TOKEN_API
 from dialog.general import Handler
-# from conversations.books import Book
 
 
 updater = Updater(TOKEN_API, use_context=True)
@@ -28,7 +25,6 @@ def start():
         fallbacks=[MessageHandler(Filters.all, Handler.all_message)]
     ))
 
-    # если вдруг ответа не нашлось
     dispatcher.add_handler(MessageHandler(Filters.all, Handler.all_message))
 
     updater.start_polling()
