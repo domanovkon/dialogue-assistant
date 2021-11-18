@@ -1,13 +1,17 @@
 import pandas as pd
 import pymorphy2
 
+FIND = {"найти", "находить", "отыскивать", "подобрать", "выудить", "определить", "поиск", "искать"}
 
-FIND = {"найти", "находить", "отыскивать",  "подобрать", "выудить", "определить", "поиск", "искать"}
-
-SHOW = {"показать", "показывать",  "представить", "демонстрировать", "предоставить", "покажите", "продемонстрировать"}
+SHOW = {"показать", "показывать", "представить", "демонстрировать", "предоставить", "покажите", "продемонстрировать",
+        "хотеть"}
 
 STOP = {"хватит", "отвали", "ничего", "пока", "прекрати", "довольно", "перестань", "до свидания",
         "до встречи", "исчезни", "катись", "сгинь", "ничегошеньки"}
+
+STOCK = {"акция", "распродажа", "скидка", "промокод", "дискаунт"}
+
+MEME = {"прикол", "анекдот", "шутка", "смешной", "смех", "прикольный", "шуточка", "мем", "рассмешить", "демотиватор"}
 
 
 def isFindKeyword(text):
@@ -21,6 +25,7 @@ def isFindKeyword(text):
             flag = True
     return flag
 
+
 def isShowKeyword(text):
     flag = False
     text = ReplaceSyn(text)
@@ -31,6 +36,7 @@ def isShowKeyword(text):
         if wn in SHOW:
             flag = True
     return flag
+
 
 def isStopKeyword(text):
     flag = False
@@ -44,6 +50,31 @@ def isStopKeyword(text):
             flag = True
     return flag
 
+
+def isStockKeyword(text):
+    flag = False
+    text = ReplaceSyn(text)
+    morph = pymorphy2.MorphAnalyzer()
+    words = text.split()
+    for w in words:
+        wn = morph.parse(w)[0].normal_form
+        if wn in STOCK:
+            flag = True
+    return flag
+
+
+def isMemeKeyword(text):
+    flag = False
+    text = ReplaceSyn(text)
+    morph = pymorphy2.MorphAnalyzer()
+    words = text.split()
+    for w in words:
+        wn = morph.parse(w)[0].normal_form
+        if wn in MEME:
+            flag = True
+    return flag
+
+
 def ReplaceSyn(text):
     text = text.replace("?", "")
     text = text.replace(".", "")
@@ -51,6 +82,7 @@ def ReplaceSyn(text):
     text = text.replace(":", "")
     text = text.replace("!", "")
     return text
+
 
 def LoadData():
     dataSetSearch = pd.read_csv('laptops.txt', delimiter='\t', encoding="utf-16-le",

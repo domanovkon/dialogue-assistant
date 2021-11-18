@@ -1,6 +1,6 @@
 from telegram import ParseMode
 from telegram.ext import ConversationHandler
-from vocabulary.general import isFindKeyword, isShowKeyword, isStopKeyword
+from vocabulary.general import isMemeKeyword, isShowKeyword, isStopKeyword, isStockKeyword
 from vocabulary.laptop import isLaptopKeyword
 from standard_phrases import HEY_PHRASE, NOT_UNDERSTAND, BYE_PHRASE
 from random import choice
@@ -28,8 +28,11 @@ class Handler:
         if isShowKeyword(msg) and isLaptopKeyword(msg):
             self.message.reply_text("Хорошо, показать весь список ноутбуков или подобрать какой-то конкретный?")
             return "laptop"
-        elif isLaptopKeyword(msg) and isFindKeyword(msg):
-            self.message.reply_text("Помоги найти ноутбук")
+        elif isStockKeyword(msg) and isShowKeyword(msg):
+            self.message.reply_text("Показать все акции магазина или ваши персональные предложения?")
+            return "stock"
+        elif isMemeKeyword(msg):
+            self.message.reply_text("Хочите прикол? 😏")
             return "all"
         elif isStopKeyword(msg):
             self.message.reply_text(choice(BYE_PHRASE))

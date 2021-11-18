@@ -1,8 +1,8 @@
-from telegram.ext import Updater, CommandHandler,RegexHandler, Filters, MessageHandler, ConversationHandler
+from telegram.ext import Updater, CommandHandler, RegexHandler, Filters, MessageHandler, ConversationHandler
 from dialog.laptops import Laptop
+from dialog.stocks import Stock
 from token_api import TOKEN_API
 from dialog.general import Handler
-
 
 updater = Updater(TOKEN_API, use_context=True)
 dispatcher = updater.dispatcher
@@ -15,13 +15,8 @@ def start():
             "general": [MessageHandler(Filters.all, Handler.general)],
             "all": [MessageHandler(Filters.all, Handler.all)],
             "laptop": [MessageHandler(Filters.all, Laptop.find)],
-            "laptopName": [MessageHandler(Filters.all, Laptop.findByName)]
-            # "search":  [MessageHandler(Filters.all, Handler.search)],
-            # "choose": [MessageHandler(Filters.all, Article.choose)],
-            # "article": [MessageHandler(Filters.all, Article.defined)],
-            # "defined": [MessageHandler(Filters.all, Article.defined)],
-            # "undefined": [MessageHandler(Filters.all, Article.undefined)],
-            # "show": [MessageHandler(Filters.all, Article.find)],
+            "laptopName": [MessageHandler(Filters.all, Laptop.findByName)],
+            "stock": [MessageHandler(Filters.all, Stock.findStocks)]
         },
         fallbacks=[MessageHandler(Filters.all, Handler.all_message)]
     ))
