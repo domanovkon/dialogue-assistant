@@ -2,6 +2,7 @@ from telegram.ext import Updater, CommandHandler, RegexHandler, Filters, Message
 from dialog.laptops import Laptop
 from dialog.stocks import Stock
 from dialog.memes import Memes
+from dialog.games import Game
 from token_api import TOKEN_API
 from dialog.general import Handler
 
@@ -18,7 +19,8 @@ def start():
             "laptop": [MessageHandler(Filters.all, Laptop.find)],
             "laptopName": [MessageHandler(Filters.all, Laptop.findByName)],
             "stock": [MessageHandler(Filters.all, Stock.findStocks)],
-            "memes": [MessageHandler(Filters.all, Memes.showMemes)]
+            "memes": [MessageHandler(Filters.all, Memes.showMemes)],
+            "game": [MessageHandler(Filters.all, Game.startGame)]
         },
         fallbacks=[MessageHandler(Filters.all, Handler.all_message)]
     ))

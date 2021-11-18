@@ -13,6 +13,8 @@ STOCK = {"акция", "распродажа", "скидка", "промокод
 
 MEME = {"прикол", "анекдот", "шутка", "смешной", "смех", "прикольный", "шуточка", "мем", "рассмешить", "демотиватор"}
 
+GAME = {"игра", "играть", "город", "игрушка", "поиграть"}
+
 
 def isFindKeyword(text):
     flag = False
@@ -71,6 +73,17 @@ def isMemeKeyword(text):
     for w in words:
         wn = morph.parse(w)[0].normal_form
         if wn in MEME:
+            flag = True
+    return flag
+
+def isGameKeyword(text):
+    flag = False
+    text = ReplaceSyn(text)
+    morph = pymorphy2.MorphAnalyzer()
+    words = text.split()
+    for w in words:
+        wn = morph.parse(w)[0].normal_form
+        if wn in GAME:
             flag = True
     return flag
 

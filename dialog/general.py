@@ -1,6 +1,6 @@
 from telegram import ParseMode
 from telegram.ext import ConversationHandler
-from vocabulary.general import isMemeKeyword, isShowKeyword, isStopKeyword, isStockKeyword
+from vocabulary.general import isMemeKeyword, isShowKeyword, isStopKeyword, isStockKeyword, isGameKeyword
 from vocabulary.laptop import isLaptopKeyword
 from standard_phrases import HEY_PHRASE, NOT_UNDERSTAND, BYE_PHRASE
 from random import choice
@@ -34,6 +34,9 @@ class Handler:
         elif isMemeKeyword(msg):
             self.message.reply_text("Хочите прикол? 😏")
             return "memes"
+        elif isGameKeyword(msg):
+            self.message.reply_text("Давай поиграем в города 🏙️ ???")
+            return "game"
         elif isStopKeyword(msg):
             self.message.reply_text(choice(BYE_PHRASE))
             return ConversationHandler.END
