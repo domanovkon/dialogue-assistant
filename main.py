@@ -6,6 +6,7 @@ from dialog.games import Game
 from token_api import TOKEN_API
 from dialog.general import Handler
 
+
 updater = Updater(TOKEN_API, use_context=True)
 dispatcher = updater.dispatcher
 
@@ -20,7 +21,8 @@ def start():
             "laptopName": [MessageHandler(Filters.all, Laptop.findByName)],
             "stock": [MessageHandler(Filters.all, Stock.findStocks)],
             "memes": [MessageHandler(Filters.all, Memes.showMemes)],
-            "game": [MessageHandler(Filters.all, Game.startGame)]
+            "game": [MessageHandler(Filters.all, Game.startGame)],
+            "play": [MessageHandler(Filters.all, Game.play)]
         },
         fallbacks=[MessageHandler(Filters.all, Handler.all_message)]
     ))

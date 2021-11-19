@@ -3,7 +3,7 @@ import pandas as pd
 
 PERSONAL = {"персональный", "мой", "свой", "я", "предложение"}
 
-ALL_STOCKS = {"всё", "акции", "скидки", "магазин"}
+ALL_STOCKS = {"всё", "акция", "скидки", "магазин"}
 
 
 def isPersonalKeyword(text):
